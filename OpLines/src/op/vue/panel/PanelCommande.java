@@ -24,6 +24,9 @@ public class PanelCommande extends AbstractPanel{
         this.ajouter.setText("Ajouter Commande");
         this.ajouter.addActionListener(al);
         
+        this.supprimer.setText("Supprimer Commande");
+        this.supprimer.addActionListener(al);
+        
         this.defaultCBModel = new DefaultComboBoxModel();
         this.produitComboBox = new JComboBox(this.defaultCBModel);
         this.quantiteText = new JTextField();
@@ -50,9 +53,16 @@ public class PanelCommande extends AbstractPanel{
     public int getProduitId(){
         return Integer.parseInt(this.produitComboBox.getSelectedItem().toString());
     }
-    
     public void addCommande(String id, String qte, String vit){
         this.defaultTableModel.addRow(new Object[]{id,qte,vit});
         this.table.setModel(this.defaultTableModel);
+    }
+    public int deleteSelectedCommande(){
+        int selectedRow = this.table.getSelectedRow();
+        if (selectedRow ==-1){
+            return selectedRow;
+        }
+        this.defaultTableModel.removeRow(selectedRow);
+        return selectedRow;
     }
 }

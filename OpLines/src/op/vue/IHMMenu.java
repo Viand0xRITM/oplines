@@ -87,7 +87,13 @@ public class IHMMenu extends JFrame {
     public int getNbChaines(){
         return panelChaine.getNbChaines();
     }
-    public void addChaine(int id,int vit){
-        this.panelChaine.addChaine(id,vit);
+    public int addChaine(int vit){
+        return this.panelChaine.addChaine(vit);
+    }
+    public int deleteSelectedChaine(){
+        return this.panelChaine.deleteSelectedChaine();
+    }
+    public int deleteSelectedCommande(){
+        return this.panelCommande.deleteSelectedCommande();
     }
 }

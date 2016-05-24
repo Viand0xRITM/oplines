@@ -33,23 +33,28 @@ public class MenuControleur implements ActionListener {
             try{
                 //is Integer
                 int qte = Integer.parseInt(ihm.getQuantite());
-                //get Vitesse
-                // TODO
                 //get Item Selected
                 int id = ihm.getProduitId();
-                        
-                // On injecte
+                //get Vitesse
+                // TODO
+                
+                // On injecte dans le controlleur
+                // TODO
+                // On injecte dans la vue
                 this.ihm.addCommande(String.valueOf(id), String.valueOf(qte),"10");
                 System.out.println("Commande ajoutée");
-                // Ajouter la fonction dans le controleur
             }catch(NumberFormatException | NullPointerException e1) {}
         }else if (command.equals("Ajouter Chaine")) {
             try{
                 int vit = Integer.parseInt(ihm.getVitesse());
-                int nbChaine = this.ihm.getNbChaines();
-                this.ihm.addChaine(nbChaine+1,vit);
+                int chaineCree = this.ihm.addChaine(vit);
+                //ajouter la nouvelle Chaine au Controlleur
             }catch(NumberFormatException | NullPointerException e1) {}
-        } else {
+        } else if (command.equals("Supprimer Chaine")){
+            this.ihm.deleteSelectedChaine();
+        } else if (command.equals("Supprimer Commande")){
+            this.ihm.deleteSelectedCommande();
+        }else {
             System.out.println("Inconnue au bataillon");
         }
     }

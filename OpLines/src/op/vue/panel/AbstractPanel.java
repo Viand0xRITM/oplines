@@ -1,17 +1,12 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package op.vue.panel;
 
-import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,11 +25,13 @@ public abstract class AbstractPanel extends JPanel{
     protected void init(){
         this.titre = new JLabel();
         this.boutonPanel = new JPanel();
+        
         this.ajouter   = new JButton("ajouter");
         this.supprimer = new JButton("supprimer");
-        this.defaultTableModel = new DefaultTableModel();
-        this.table     = new JTable(defaultTableModel);
         
+        this.defaultTableModel = new DefaultTableModel();
+        this.table     = new JTable(this.defaultTableModel);
+        this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         this.boutonPanel.setLayout(new BoxLayout(boutonPanel, BoxLayout.X_AXIS));
         
@@ -43,6 +40,7 @@ public abstract class AbstractPanel extends JPanel{
         
         this.boutonPanel.add(this.ajouter);
         this.boutonPanel.add(this.supprimer);
+        
         this.add(boutonPanel);       
     }
     

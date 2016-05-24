@@ -12,7 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import op.modele.Commande;
 import op.modele.Produit;
 
 /**
@@ -60,7 +59,7 @@ public class PanelCommande extends AbstractPanel{
     }
     public int getProduitId(){
         System.out.println(prodtuiComboBox.getSelectedItem());
-        return (int)prodtuiComboBox.getSelectedItem();
+        return Integer.parseInt(prodtuiComboBox.getSelectedItem().toString());
     }
     
     public void addCommande(String id, String qte, String vit){

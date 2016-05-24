@@ -87,4 +87,13 @@ public class IHMMenu extends JFrame {
     public void addCommande(String id, String qte, String vit){
         this.panelCommande.addCommande(id,qte,vit);
     }
+    public String getVitesse(){
+        return panelChaine.getVitesse();
+    }
+    public int getNbChaines(){
+        return panelChaine.getNbChaines();
+    }
+    public void addChaine(int id,int vit){
+        
+    }
 }

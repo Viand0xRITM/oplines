@@ -69,12 +69,6 @@ public class IHMMenu extends JFrame {
         add(conteneur);
         pack();
     }
-    public void ajoutChaine(){
-        
-    }
-    public void ajoutChaines(){
-        
-    }
     public void setProduits(ArrayList<Produit> liste){
         panelCommande.setListeProduit(liste);
     }
@@ -94,6 +88,6 @@ public class IHMMenu extends JFrame {
         return panelChaine.getNbChaines();
     }
     public void addChaine(int id,int vit){
-        
+        this.panelChaine.addChaine(id,vit);
     }
 }

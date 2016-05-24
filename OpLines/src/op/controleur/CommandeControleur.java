@@ -5,7 +5,6 @@
  */
 package op.controleur;
 
-import java.util.ArrayList;
 import op.modele.Commande;
 import op.modele.Produit;
 
@@ -20,10 +19,14 @@ public class CommandeControleur {
     {
     }
     
-    public void createCommande(ArrayList<Produit> listeProduits)
+    public void addProduit(Produit produit)
     {
-        commande = new Commande();
-        commande.setListeProduits(listeProduits);
+        commande.addProduct(produit);
+    }
+    
+    public void removeProduit(int index)
+    {
+        commande.deleteProduct(index);
     }
     
     public Commande getCommande()

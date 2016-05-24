@@ -5,8 +5,6 @@
  */
 package op.modele;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author steph
@@ -14,21 +12,36 @@ import java.util.ArrayList;
 public class Chaine {
     private int idChaine;
     private int vitesse;
-    private ArrayList<Commande> commandes;
+    private Commande commande;
     
     public Chaine(int idChaine, int vitesse)
     {
         this.idChaine = idChaine;
         this.vitesse = vitesse;
     }
-    
-    public void ajoutCommande(Commande commande)
-    {
-        commandes.add(commande);
+
+    public int getIdChaine() {
+        return idChaine;
+    }
+
+    public void setIdChaine(int idChaine) {
+        this.idChaine = idChaine;
+    }
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
     
-    public boolean commandesTraitees()
-    {
-        return commandes.isEmpty();
-    }
 }

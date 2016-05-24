@@ -12,7 +12,6 @@ package op.modele;
 public class Chaine {
     private int idChaine;
     private int vitesse;
-    private Commande commande;
     
     public Chaine(int idChaine, int vitesse)
     {
@@ -34,14 +33,6 @@ public class Chaine {
 
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
-    }
-
-    public Commande getCommande() {
-        return commande;
-    }
-
-    public void setCommande(Commande commande) {
-        this.commande = commande;
     }
     
 }

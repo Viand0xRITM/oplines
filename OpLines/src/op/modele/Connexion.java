@@ -29,22 +29,20 @@ public class Connexion {
             System.out.println("Connexion a " + DBPath + " avec succès");
         } catch (ClassNotFoundException notFoundException) {
             notFoundException.printStackTrace();
-            System.out.println("Erreur de connecxion");
+            System.out.println("Erreur de connexion");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            System.out.println("Erreur de connecxion");
+            System.out.println("Erreur de connexion");
         }
     }
- 
-    
-    
+  
     public ResultSet query(String requet) {
        ResultSet resultat = null;
        try {
            resultat = statement.executeQuery(requet);
        } catch (SQLException e) {
            e.printStackTrace();
-           System.out.println("Erreur dans la requet : " + requet);
+           System.out.println("Erreur dans la requete : " + requet);
        }
        return resultat;
  

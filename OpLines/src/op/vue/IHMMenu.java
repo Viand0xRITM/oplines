@@ -9,11 +9,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import op.vue.panel.PanelChaine;
+import op.vue.panel.PanelCommande;
+import op.controleur.MenuControleur;
+import op.modele.Produit;
+
 /**
  *
  * @author Antoine
  */
 public class IHMMenu extends JFrame {
+    
+    private MenuControleur monControleur;
     
     private JPanel conteneur;
     
@@ -24,13 +31,12 @@ public class IHMMenu extends JFrame {
     private JButton boutonLancerSimu;
     
     private JPanel panelRecap;
-    private JPanel panelChaine;
-    private JPanel panelCommande;
-    private JTable tableChaine;
-    private JTable tableCommande;
+    private PanelChaine panelChaine;
+    private PanelCommande panelCommande;
     
-    public IHMMenu() {
+    public IHMMenu(MenuControleur controleur) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        monControleur = controleur;
         conteneur = new JPanel();
         conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
         
@@ -42,14 +48,11 @@ public class IHMMenu extends JFrame {
         //recap
         panelRecap = new JPanel();
         panelRecap.setLayout(new BoxLayout(panelRecap, BoxLayout.X_AXIS));
-        panelChaine = new JPanel();
+        panelChaine = new PanelChaine("Liste des Chaines de production", controleur);
         panelChaine.setLayout(new BoxLayout(panelChaine, BoxLayout.Y_AXIS));
-        panelCommande = new JPanel();
+        panelCommande = new PanelCommande("Liste des Commandes", controleur);
         panelCommande.setLayout(new BoxLayout(panelCommande, BoxLayout.Y_AXIS));
-        tableChaine = new JTable();
-        panelChaine.add(new JScrollPane(tableChaine));
-        tableCommande = new JTable();
-        panelCommande.add(new JScrollPane(tableCommande));
+        
         panelRecap.add(panelChaine);
         panelRecap.add(panelCommande);
         
@@ -66,12 +69,22 @@ public class IHMMenu extends JFrame {
         add(conteneur);
         pack();
     }
-    
-    /*public void putCommandes(ArrayList<Commande> listeCommandes){
-        //créer un tableau pour chaque commande
-        //puis créer un tableau où stocker chacun des tableaux créés précédemment
-        //Object [];
-                
-       // tableCommande
-    }*/
+    public void ajoutChaine(){
+        
+    }
+    public void ajoutChaines(){
+        
+    }
+    public void setProduits(ArrayList<Produit> liste){
+        panelCommande.setListeProduit(liste);
+    }
+    public String getQuantite(){
+        return panelCommande.getQuantite();
+    }
+    public int getProduitId(){
+        return panelCommande.getProduitId();
+    }
+    public void addCommande(String id, String qte, String vit){
+        this.panelCommande.addCommande(id,qte,vit);
+    }
 }

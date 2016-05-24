@@ -8,6 +8,8 @@ package op.controleur;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import op.modele.Connexion;
 import op.modele.Produit;
 
@@ -19,22 +21,27 @@ public class ProduitControleur {
     ArrayList<Produit> listeProduits;
     Connexion bdd;
    
-    public ProduitControleur() throws SQLException
+    public ProduitControleur()
     {
-        bdd = new Connexion("bdd/produit.db");
-        bdd.connect();
-        
-        //read product in db
-        ResultSet result = bdd.query("SELECT * FROM produit");
-        while(result.next())
-        {
-            int id, tempsFabrication;
-            id = result.getInt("id_produit");
-            tempsFabrication = result.getInt("temps_fabrication_produit");
+        listeProduits = new ArrayList();
+        try {
+            bdd = new Connexion("./bdd/produit.db");
+            bdd.connect();
             
-            listeProduits.add(new Produit(id, tempsFabrication));
+            //read product in db
+            ResultSet result = bdd.query("SELECT * FROM produit");
+            while(result.next())
+            {
+                int id, tempsFabrication;
+                id = result.getInt("id_produit");
+                tempsFabrication = result.getInt("temps_fabrication_produit");
+                
+                listeProduits.add(new Produit(id, tempsFabrication));
+            }
+            bdd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitControleur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bdd.close();
     }
     
     public ArrayList<Produit> getListeProduits() {

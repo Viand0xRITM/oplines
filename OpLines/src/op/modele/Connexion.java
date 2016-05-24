@@ -50,8 +50,8 @@ public class Connexion {
     
     public void close() {
         try {
-            connection.close();
             statement.close();
+            connection.close();     
         } catch (SQLException e) {
             e.printStackTrace();
         }

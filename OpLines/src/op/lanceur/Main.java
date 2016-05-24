@@ -16,14 +16,7 @@ public class Main {
     public static void main(String [ ] args){
         System.out.println("Main de PrgParra");
         ProduitControleur mProduitControleur;
-        try {
-            mProduitControleur = new ProduitControleur();
-            MenuControleur mControleur = new MenuControleur(mProduitControleur);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        }
-        
+        mProduitControleur = new ProduitControleur();
+        MenuControleur mControleur = new MenuControleur(mProduitControleur);        
     }
 }

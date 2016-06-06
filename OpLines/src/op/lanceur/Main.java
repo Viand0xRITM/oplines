@@ -2,6 +2,7 @@ package op.lanceur;
 
 import op.controleur.MenuControleur;
 import op.controleur.ProduitControleur;
+import op.controleur.SimulateurControleur;
 
 /**
  *
@@ -13,6 +14,7 @@ public class Main {
         System.out.println("Main de PrgParra");
         ProduitControleur mProduitControleur;
         mProduitControleur = new ProduitControleur();
-        MenuControleur mControleur = new MenuControleur(mProduitControleur);        
+        SimulateurControleur mSimulateurControleur = new SimulateurControleur();
+        MenuControleur mControleur = new MenuControleur(mProduitControleur,mSimulateurControleur);        
     }
 }

@@ -9,11 +9,13 @@ import op.vue.IHMMenu;
 public class MenuControleur implements ActionListener {
     private IHMMenu ihm;
     private ProduitControleur mProduitControleur;
+    private SimulateurControleur mSimulateurControleur;
     
-    public MenuControleur(ProduitControleur mProduitControleur){
+    public MenuControleur(ProduitControleur mProduitControleur, SimulateurControleur mSimulateurControleur){
         this.ihm = new IHMMenu(this);
         this.ihm.setVisible(true);
         this.mProduitControleur = mProduitControleur;
+        this.mSimulateurControleur = mSimulateurControleur;
         ArrayList<Produit> list = mProduitControleur.getListeProduits();
         this.ihm.setProduits(list);
     }
@@ -36,25 +38,30 @@ public class MenuControleur implements ActionListener {
                 //get Item Selected
                 int id = ihm.getProduitId();
                 //get Vitesse
-                // TODO
-                
-                // On injecte dans le controlleur
-                // TODO
+                ArrayList<Produit> list = mProduitControleur.getListeProduits();
+                int i=0;
+                //System.out.println(id);
+                while (list.get(i).getId() != id){
+                    //System.out.println(list.get(i).getId());
+                    i++;
+                }
                 // On injecte dans la vue
-                this.ihm.addCommande(String.valueOf(id), String.valueOf(qte),"10");
+                this.ihm.addCommande(String.valueOf(id), String.valueOf(qte),String.valueOf(list.get(i).getTempsProduction()));
                 System.out.println("Commande ajoutée");
             }catch(NumberFormatException | NullPointerException e1) {}
         }else if (command.equals("Ajouter Chaine")) {
             try{
                 int vit = Integer.parseInt(ihm.getVitesse());
-                int chaineCree = this.ihm.addChaine(vit);
-                //ajouter la nouvelle Chaine au Controlleur
+                this.ihm.addChaine(vit);
             }catch(NumberFormatException | NullPointerException e1) {}
         } else if (command.equals("Supprimer Chaine")){
             this.ihm.deleteSelectedChaine();
         } else if (command.equals("Supprimer Commande")){
             this.ihm.deleteSelectedCommande();
-        }else {
+        } else if (command.equals("Lancer simulation")){
+            mSimulateurControleur.start();
+            this.ihm.setVisible(false);
+        } else {
             System.out.println("Inconnue au bataillon");
         }
     }

@@ -6,8 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import op.vue.panel.PanelChaine;
 import op.vue.panel.PanelCommande;
@@ -48,9 +46,9 @@ public class IHMMenu extends JFrame {
         //recap
         panelRecap = new JPanel();
         panelRecap.setLayout(new BoxLayout(panelRecap, BoxLayout.X_AXIS));
-        panelChaine = new PanelChaine("Liste des Chaines de production", controleur);
+        panelChaine = new PanelChaine("Liste des Chaines de production", monControleur);
         panelChaine.setLayout(new BoxLayout(panelChaine, BoxLayout.Y_AXIS));
-        panelCommande = new PanelCommande("Liste des Commandes", controleur);
+        panelCommande = new PanelCommande("Liste des Commandes", monControleur);
         panelCommande.setLayout(new BoxLayout(panelCommande, BoxLayout.Y_AXIS));
         
         panelRecap.add(panelChaine);
@@ -61,6 +59,7 @@ public class IHMMenu extends JFrame {
         panelBoutons.setLayout(new BoxLayout(panelBoutons, BoxLayout.X_AXIS));
         boutonLancerSimu = new JButton();
         boutonLancerSimu.setText("Lancer simulation");
+        boutonLancerSimu.addActionListener(monControleur);
         panelBoutons.add(boutonLancerSimu);
         
         conteneur.add(titrePanel);

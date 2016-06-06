@@ -54,6 +54,7 @@ public class PanelCommande extends AbstractPanel{
         return Integer.parseInt(this.produitComboBox.getSelectedItem().toString());
     }
     public void addCommande(String id, String qte, String vit){
+        this.defaultCBModel.removeElement(id);
         this.defaultTableModel.addRow(new Object[]{id,qte,vit});
         this.table.setModel(this.defaultTableModel);
     }
@@ -62,6 +63,7 @@ public class PanelCommande extends AbstractPanel{
         if (selectedRow ==-1){
             return selectedRow;
         }
+        this.defaultCBModel.addElement(this.defaultTableModel.getValueAt(selectedRow, 0));
         this.defaultTableModel.removeRow(selectedRow);
         return selectedRow;
     }

@@ -12,43 +12,64 @@ import java.util.ArrayList;
  * @author Antoine
  */
 public class Commande {
-    ArrayList<Produit> listeProduits;
-    int tempsProduction;
+    ArrayList<CommandeLigne> contenuCommande;
+    int unitesAProduire;
+    int unitesProduites;
     
     public Commande()
     {
+        contenuCommande = new ArrayList();
     }
     
     /*
         calcule le temps total de production de la commande
     */
-    private void calculTempsProduction()
+    public void calculUnitesAProduire()
     {
         int result = 0;
-        for(int i = 0; i < listeProduits.size(); i++)
-            tempsProduction += listeProduits.get(i).getTempsProduction();
+        for(int i = 0; i < contenuCommande.size(); i++)
+            result += contenuCommande.get(i).getQuantiteAProduire();
          
-        this.tempsProduction = result;
+        this.unitesAProduire = result;
     }
     
-    public void addProduct(Produit prod)
+    public void calculUnitesProduite()
     {
-        listeProduits.add(prod);
-        calculTempsProduction();
+        int result = 0;
+        for(int i = 0; i < contenuCommande.size(); i++)
+            result += contenuCommande.get(i).getQuantiteProduite();
+         
+        this.unitesProduites = result;
+    }
+    
+    public void addProduct(Produit prod, int quantite)
+    {
+        CommandeLigne ligne = new CommandeLigne(prod, quantite);
+        contenuCommande.add(ligne);
+        calculUnitesAProduire();
     }
     
     public void deleteProduct(int index)
     {
-        listeProduits.remove(index);
-        calculTempsProduction();
+        contenuCommande.remove(index);
+        calculUnitesAProduire();
     }
 
-    public ArrayList<Produit> getListeProduits() {
-        return listeProduits;
+    public ArrayList<CommandeLigne> getListeProduits() {
+        return contenuCommande;
+    }
+    
+    public int getUnitesAProduire()
+    {
+        return unitesAProduire;
     }
 
-    public void setListeProduits(ArrayList<Produit> listeProduits) {
-        this.listeProduits = listeProduits;
-        calculTempsProduction();
+    public int getUnitesProduites() {
+        return unitesProduites;
     }
+
+    public void setUnitesProduites(int unitesProduites) {
+        this.unitesProduites = unitesProduites;
+    }
+    
 }

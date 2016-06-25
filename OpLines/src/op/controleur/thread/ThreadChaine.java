@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import op.modele.Chaine;
 import op.modele.Commande;
-import op.modele.CommandeLigne;
+import op.modele.Produit;
 
 /**
  *
@@ -19,13 +19,13 @@ import op.modele.CommandeLigne;
 public class ThreadChaine extends Thread {
     Chaine chaine;
     Commande commande;
-    ArrayList<CommandeLigne> contenuProduit;
+    ArrayList<Produit> produits;
     
-    public ThreadChaine(Chaine chaine, Commande commande)
+    public ThreadChaine(Chaine chaine, Commande commande, ArrayList<Produit> produits)
     {
         this.chaine = chaine;
         this.commande = commande;
-        contenuProduit = new ArrayList();
+        this.produits = produits;
     }
     
     @Override
@@ -41,34 +41,26 @@ public class ThreadChaine extends Thread {
     //renvoie vraie si la commande est traitée
     public boolean commandeTraitee()
     { 
-        return commande.getUnitesAProduire() == commande.getUnitesProduites();
+        return produits.isEmpty();
     }
     
-    public ArrayList<CommandeLigne> getProductionCourante()
-    {
-        return contenuProduit;
-    }
-    
-    private void traiterProduit()
-    {
-        /*
-        lock commande
-            obtenir 1 unité d'un produit
-            incrémenter unité produite
-        
-        traiter unité
-        ajouter unité aux unités traitées       
-       */
-        
-        CommandeLigne ligne = commande.getListeProduits().get(0);
-        ligne.fabriquerProduit();
-        try {
-            sleep(chaine.getVitesse() * 100 * ligne.getProduit().getTempsProduction());
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ThreadChaine.class.getName()).log(Level.SEVERE, null, ex);
+    private synchronized void traiterProduit()
+    {      
+        if(!commandeTraitee())
+        {
+            Produit produit = produits.remove(0);
+
+            try {
+                sleep(chaine.getVitesse() * 100 * produit.getTempsProduction());
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ThreadChaine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //System.out.println("Chaine " + chaine.getIdChaine() + " a traité 1 unité de produit : " + produit.getId());
+            
+            commande.setUnitesProduites(commande.getUnitesProduites() + 1);
         }
         
-        System.out.println("Chaine" + chaine.getIdChaine() + " a traité : " + ligne.getProduit().getId());
-        
+        notifyAll();
     }
 }

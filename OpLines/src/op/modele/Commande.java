@@ -19,10 +19,11 @@ public class Commande {
     public Commande()
     {
         contenuCommande = new ArrayList();
+        unitesProduites = 0;
     }
     
     /*
-        calcule le temps total de production de la commande
+        calcule le nombre d'unité total de production de la commande
     */
     public void calculUnitesAProduire()
     {
@@ -33,13 +34,9 @@ public class Commande {
         this.unitesAProduire = result;
     }
     
-    public void calculUnitesProduite()
-    {
-        int result = 0;
-        for(int i = 0; i < contenuCommande.size(); i++)
-            result += contenuCommande.get(i).getQuantiteProduite();
-         
-        this.unitesProduites = result;
+    public void setUnitesProduites(int unitesProduites)
+    {       
+        this.unitesProduites = unitesProduites;
     }
     
     public void addProduct(Produit prod, int quantite)
@@ -55,7 +52,7 @@ public class Commande {
         calculUnitesAProduire();
     }
 
-    public ArrayList<CommandeLigne> getListeProduits() {
+    public ArrayList<CommandeLigne> getContenuCommande() {
         return contenuCommande;
     }
     
@@ -66,10 +63,5 @@ public class Commande {
 
     public int getUnitesProduites() {
         return unitesProduites;
-    }
-
-    public void setUnitesProduites(int unitesProduites) {
-        this.unitesProduites = unitesProduites;
-    }
-    
+    }    
 }

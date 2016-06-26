@@ -21,10 +21,10 @@ public class Main {
     @SuppressWarnings("empty-statement")
     public static void main(String [ ] args) throws InterruptedException{
         System.out.println("Main de PrgParra");
-        /*ProduitControleur mProduitControleur;
+        ProduitControleur mProduitControleur;
         mProduitControleur = new ProduitControleur();
         SimulateurControleur mSimulateurControleur = new SimulateurControleur();
-        MenuControleur mControleur = new MenuControleur(mProduitControleur,mSimulateurControleur);    */
+        MenuControleur mControleur = new MenuControleur(mProduitControleur,mSimulateurControleur);    
         
         
         /**************
@@ -32,7 +32,7 @@ public class Main {
         **************/
         
         //création produits
-        ArrayList<Produit> produits = new ArrayList();
+        /*ArrayList<Produit> produits = new ArrayList();
         produits.add(new Produit(1,5));
         produits.add(new Produit(2,10));
         produits.add(new Produit(3,3));
@@ -64,6 +64,6 @@ public class Main {
         }
         
         long time = System.currentTimeMillis() - startTime; // utile pour le calcul du temps de production 
-        System.out.println("Production finie en : "  + (time/1000) + "s"); // utile pour le calcul du temps de production
+        System.out.println("Production finie en : "  + (time/1000) + "s"); // utile pour le calcul du temps de production*/
     }
 }

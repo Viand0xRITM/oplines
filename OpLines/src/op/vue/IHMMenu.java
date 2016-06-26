@@ -6,10 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 import op.vue.panel.PanelChaine;
 import op.vue.panel.PanelCommande;
 import op.controleur.MenuControleur;
+import op.modele.Chaine;
+import op.modele.Commande;
 import op.modele.Produit;
 
 /**
@@ -94,5 +97,26 @@ public class IHMMenu extends JFrame {
     }
     public int deleteSelectedCommande(){
         return this.panelCommande.deleteSelectedCommande();
+    }
+    public ArrayList<Chaine> getChaines(){
+        ArrayList<Chaine> result = new ArrayList();
+        DefaultTableModel dtm = this.panelChaine.getTableModel();
+        for (int i=0; i< dtm.getRowCount();i++){
+            result.add(new Chaine(Integer.valueOf(dtm.getValueAt(i, 0).toString()),Integer.valueOf(dtm.getValueAt(i, 1).toString()) ));
+        }
+        return result;
+    }
+    
+    public Commande getCommande() {
+        Commande cmd = new Commande();
+        DefaultTableModel dtm = this.panelCommande.getTableModel();
+        for (int i=0; i< dtm.getRowCount();i++){
+            int id = Integer.valueOf(dtm.getValueAt(i, 0).toString());
+            int qte = Integer.valueOf(dtm.getValueAt(i, 1).toString());
+            int vitesse = Integer.valueOf(dtm.getValueAt(i, 2).toString());
+            Produit prd = new Produit(id, vitesse);
+            cmd.addProduct(prd, qte);
+        }
+        return cmd;
     }
 }

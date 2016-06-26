@@ -6,8 +6,7 @@
 package op.controleur.thread;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import op.controleur.SimulateurControleur;
 import op.modele.Chaine;
 import op.modele.Commande;
 import op.modele.CommandeLigne;
@@ -20,11 +19,12 @@ import op.modele.Produit;
 public class ThreadControleur extends Thread{
     ArrayList<ThreadChaine> Tchaines = new ArrayList();
     Commande commande;
-    
-    public ThreadControleur(Commande commande, ArrayList<Chaine> chaines)
+    private SimulateurControleur sc;
+    public ThreadControleur(Commande commande, ArrayList<Chaine> chaines, SimulateurControleur simu)
     {
+        this.sc = simu;
         this.commande = commande;
-        ArrayList<CommandeLigne> contenuCommande = commande.getContenuCommande();
+        ArrayList<CommandeLigne> contenuCommande = this.commande.getContenuCommande();
         ArrayList<Produit> produits = new ArrayList();
         
         for(int i = 0; i < contenuCommande.size(); i++)
@@ -55,7 +55,9 @@ public class ThreadControleur extends Thread{
             {
                 commandeTraitee = true;
             }
+            sc.avancement();
         }
+        sc.terminerProduction();
     }
     
     public void lauchSimulation()

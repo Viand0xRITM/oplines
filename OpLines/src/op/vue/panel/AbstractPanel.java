@@ -30,7 +30,13 @@ public abstract class AbstractPanel extends JPanel{
         this.supprimer = new JButton("supprimer");
         
         this.defaultTableModel = new DefaultTableModel();
-        this.table     = new JTable(this.defaultTableModel);
+        
+        this.table     = new JTable(this.defaultTableModel){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        };
         this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         this.boutonPanel.setLayout(new BoxLayout(boutonPanel, BoxLayout.X_AXIS));
@@ -42,6 +48,10 @@ public abstract class AbstractPanel extends JPanel{
         this.boutonPanel.add(this.supprimer);
         
         this.add(boutonPanel);       
+    }
+    
+    public DefaultTableModel getTableModel(){
+        return this.defaultTableModel;
     }
     
 }

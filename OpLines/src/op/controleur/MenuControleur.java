@@ -3,6 +3,8 @@ package op.controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import op.modele.Chaine;
+import op.modele.Commande;
 import op.modele.Produit;
 import op.vue.IHMMenu;
 
@@ -59,8 +61,16 @@ public class MenuControleur implements ActionListener {
         } else if (command.equals("Supprimer Commande")){
             this.ihm.deleteSelectedCommande();
         } else if (command.equals("Lancer simulation")){
-            mSimulateurControleur.start();
-            this.ihm.setVisible(false);
+            // On récupère les commandes et les chaines
+            ArrayList<Chaine> listeChaines = this.ihm.getChaines();
+            Commande commande= this.ihm.getCommande();
+            if (! listeChaines.isEmpty() && ! commande.getContenuCommande().isEmpty()){
+                mSimulateurControleur.start(listeChaines, commande);
+                this.ihm.setVisible(false);
+            } else {
+                System.out.println("Pas de chaines ou de produits");
+            }
+            
         } else {
             System.out.println("Inconnue au bataillon");
         }

@@ -22,6 +22,7 @@ public class CommandeLigne{
 
     public Produit fabriquerProduit() {
         quantiteProduite++;
+        System.out.println("Production du produit " + produit.getId());
         return produit;
     }
 

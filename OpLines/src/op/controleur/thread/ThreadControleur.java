@@ -58,6 +58,16 @@ public class ThreadControleur extends Thread{
             }
             sc.avancement();
         }
+        boolean sorti = false;
+        while (!sorti){
+            int i= 0;
+            while (i< Tchaines.size() && ! Tchaines.get(i).isAlive()){
+                i++;
+            }
+            if (i ==Tchaines.size() ){
+                sorti =true;
+            }
+        }
         sc.terminerProduction();
     }
     

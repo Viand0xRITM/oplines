@@ -43,12 +43,12 @@ public class PanelChaineSimulation extends JPanel {
             String display = "";
             int qte = 0;
             int id=liste.get(0).getId();
-            for (Produit prd: liste){
-                if (id == prd.getId()){
+            for (int i=0; i <liste.size();i++){//Produit prd: liste){
+                if (id == liste.get(i).getId()){
                     qte++;
                 } else {
                     display += "Produit "+id+": "+qte+"\n";
-                    id = prd.getId();
+                    id = liste.get(i).getId();
                     qte=1;
                 }
             }

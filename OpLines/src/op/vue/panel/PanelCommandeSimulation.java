@@ -40,20 +40,20 @@ public class PanelCommandeSimulation extends JPanel {
         String toDisplay="";
         
         if (cp ==null){
-            for (CommandeLigne cl : listeCL){
-                toDisplay+="Produit "+cl.getProduit().getId()+": "+cl.getQuantiteProduite()+"/"+cl.getQuantiteAProduire()+"\n";
+            for (int i=0;i<listeCL.size();i++){
+                toDisplay+="Produit "+listeCL.get(i).getProduit().getId()+": "+listeCL.get(i).getQuantiteProduite()+"/"+listeCL.get(i).getQuantiteAProduire()+"\n";
             }
         } else {
-            for (CommandeLigne cl : listeCL){
+            for (int i=0;i<listeCL.size();i++){
                 int qteprod = 0;
-                for (CommandeProduite c:cp){
-                    for (Produit p:c.getListeProduit()){
-                        if (p.getId() == cl.getProduit().getId()){
+                for (int j=0;j<cp.size();j++){
+                    for (int k=0;k<cp.get(j).getListeProduit().size();k++){//Produit p:cp.getListeProduit().clone()){
+                        if (cp.get(j).getListeProduit().get(k).getId() == listeCL.get(i).getProduit().getId()){
                             qteprod++;
                         }
                     }
                 }
-                toDisplay+="Produit "+cl.getProduit().getId()+": "+qteprod+"/"+cl.getQuantiteAProduire()+"\n";
+                toDisplay+="Produit "+listeCL.get(i).getProduit().getId()+": "+qteprod+"/"+listeCL.get(i).getQuantiteAProduire()+"\n";
             }
         }
         this.text.setText(toDisplay);

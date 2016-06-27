@@ -21,10 +21,10 @@ public class PanelCommande extends AbstractPanel{
         super();
         init();
         this.titre.setText(name);
-        this.ajouter.setText("Ajouter Commande");
+        this.ajouter.setText("Ajouter produit");
         this.ajouter.addActionListener(al);
         
-        this.supprimer.setText("Supprimer Commande");
+        this.supprimer.setText("Supprimer produit");
         this.supprimer.addActionListener(al);
         
         this.defaultCBModel = new DefaultComboBoxModel();

@@ -51,7 +51,7 @@ public class IHMMenu extends JFrame {
         panelRecap.setLayout(new BoxLayout(panelRecap, BoxLayout.X_AXIS));
         panelChaine = new PanelChaine("Liste des Chaines de production", monControleur);
         panelChaine.setLayout(new BoxLayout(panelChaine, BoxLayout.Y_AXIS));
-        panelCommande = new PanelCommande("Liste des Commandes", monControleur);
+        panelCommande = new PanelCommande("Contenu de la commande", monControleur);
         panelCommande.setLayout(new BoxLayout(panelCommande, BoxLayout.Y_AXIS));
         
         panelRecap.add(panelChaine);

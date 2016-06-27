@@ -12,6 +12,7 @@ import op.controleur.thread.ThreadControleur;
 import op.modele.Chaine;
 import op.modele.Commande;
 import op.modele.CommandeLigne;
+import op.modele.CommandeProduite;
 import op.vue.IHMSimulateur;
 /**
  *
@@ -49,7 +50,7 @@ public class SimulateurControleur implements ActionListener{
     }
     
     public void avancement() {
-        this.ihm.refreshIHM(commande.getContenuCommande(), tControleur.getProgression(), tControleur.getProduitsFabriqueParChaine());
+        this.ihm.refreshIHM(commande.getContenuCommande(), tControleur.getProgression(), (ArrayList<CommandeProduite>)tControleur.getProduitsFabriqueParChaine().clone());
     }
 
     public void terminerProduction() {

@@ -32,7 +32,7 @@ public class MenuControleur implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         
-        if (command.equals("Ajouter Commande")) {
+        if (command.equals("Ajouter produit")) {
             // vérification de paramètres
             try{
                 //is Integer
@@ -58,7 +58,7 @@ public class MenuControleur implements ActionListener {
             }catch(NumberFormatException | NullPointerException e1) {}
         } else if (command.equals("Supprimer Chaine")){
             this.ihm.deleteSelectedChaine();
-        } else if (command.equals("Supprimer Commande")){
+        } else if (command.equals("Supprimer produit")){
             this.ihm.deleteSelectedCommande();
         } else if (command.equals("Lancer simulation")){
             // On récupère les commandes et les chaines

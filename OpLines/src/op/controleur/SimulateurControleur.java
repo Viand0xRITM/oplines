@@ -49,7 +49,7 @@ public class SimulateurControleur implements ActionListener{
     }
     
     public void avancement() {
-        this.ihm.refreshIHM(commande.getContenuCommande(), tControleur.getProgression());
+        this.ihm.refreshIHM(commande.getContenuCommande(), tControleur.getProgression(), tControleur.getProduitsFabriqueParChaine());
     }
 
     public void terminerProduction() {

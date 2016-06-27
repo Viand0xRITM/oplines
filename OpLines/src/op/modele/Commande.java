@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package op.modele;
 
 import java.util.ArrayList;
@@ -52,7 +47,8 @@ public class Commande {
         calculUnitesAProduire();
     }
 
-    public ArrayList<CommandeLigne> getContenuCommande() {
+    public ArrayList<CommandeLigne> getContenuCommande() 
+    {
         return contenuCommande;
     }
     
@@ -61,7 +57,8 @@ public class Commande {
         return unitesAProduire;
     }
 
-    public int getUnitesProduites() {
+    public int getUnitesProduites() 
+    {
         return unitesProduites;
     }    
 }

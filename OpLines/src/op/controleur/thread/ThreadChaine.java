@@ -21,14 +21,16 @@ public class ThreadChaine extends Thread {
     Chaine chaine;
     Commande commande;
     ArrayList<Produit> produits;
-    ArrayList<CommandeLigne> listeCL;
+    //ArrayList<CommandeLigne> listeCL;
+    ArrayList<Produit> produitsFabrique;
     
     public ThreadChaine(Chaine chaine, Commande commande, ArrayList<Produit> produits)
     {
         this.chaine = chaine;
         this.commande = commande;
         this.produits = produits;
-        listeCL = new ArrayList();
+        this.produitsFabrique = new ArrayList();
+        //listeCL = new ArrayList();
     }
     
     @Override
@@ -63,8 +65,8 @@ public class ThreadChaine extends Thread {
             
             commande.setUnitesProduites(commande.getUnitesProduites() + 1);
             
-            
-            int i = 0;
+            produitsFabrique.add(produit);
+            /*int i = 0;
             while(i < listeCL.size() && listeCL.get(i).getProduit().getId() != produit.getId())
             {
                 i++;
@@ -75,13 +77,17 @@ public class ThreadChaine extends Thread {
                 listeCL.get(i).setQuantiteProduite(listeCL.get(i).getQuantiteProduite() + 1);
             }else{
                 listeCL.add(new CommandeLigne(produit,1));
-            }     
+            }     */
         }
         notifyAll();
     }
     
-    public ArrayList<CommandeLigne> getListeCL()
+    public ArrayList<Produit> getProduitFab()
     {
-        return listeCL;
+        return produitsFabrique;
+    }
+    public int getIdChaine()
+    {
+        return chaine.getIdChaine();
     }
 }

@@ -15,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import op.modele.CommandeLigne;
+import op.modele.CommandeProduite;
+import op.modele.Produit;
 
 /**
  *
@@ -29,15 +31,30 @@ public class PanelCommandeSimulation extends JPanel {
         this.titre = new JLabel("Récapitulatif");
         this.text = new JTextArea();
         this.text.setEditable(false);
-        refreshCommandeAffiche(listeCL);
+        refreshCommandeAffiche(listeCL,null);
         this.add(titre);
         this.add(text);
     }
     
-    public void refreshCommandeAffiche(ArrayList<CommandeLigne> listeCL){
+    public void refreshCommandeAffiche(ArrayList<CommandeLigne> listeCL,ArrayList<CommandeProduite> cp){
         String toDisplay="";
-        for (CommandeLigne cl : listeCL){
-            toDisplay+="Produit "+cl.getProduit().getId()+": "+cl.getQuantiteProduite()+"/"+cl.getQuantiteAProduire()+"\n";
+        
+        if (cp ==null){
+            for (CommandeLigne cl : listeCL){
+                toDisplay+="Produit "+cl.getProduit().getId()+": "+cl.getQuantiteProduite()+"/"+cl.getQuantiteAProduire()+"\n";
+            }
+        } else {
+            for (CommandeLigne cl : listeCL){
+                int qteprod = 0;
+                for (CommandeProduite c:cp){
+                    for (Produit p:c.getListeProduit()){
+                        if (p.getId() == cl.getProduit().getId()){
+                            qteprod++;
+                        }
+                    }
+                }
+                toDisplay+="Produit "+cl.getProduit().getId()+": "+qteprod+"/"+cl.getQuantiteAProduire()+"\n";
+            }
         }
         this.text.setText(toDisplay);
     }

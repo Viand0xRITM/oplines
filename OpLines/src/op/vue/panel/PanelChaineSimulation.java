@@ -22,7 +22,10 @@ public class PanelChaineSimulation extends JPanel {
     
     protected DefaultTableModel defaultTableModel;
     
+    private int id;
+    
     public PanelChaineSimulation(String nom) {
+        this.id = Integer.valueOf(nom);
         this.titre = new JLabel("Chaine " + nom);
         this.table = new JTable(defaultTableModel);
         this.defaultTableModel = new DefaultTableModel();
@@ -36,6 +39,14 @@ public class PanelChaineSimulation extends JPanel {
         this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.add(titre);
         this.add(new JScrollPane(table));
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

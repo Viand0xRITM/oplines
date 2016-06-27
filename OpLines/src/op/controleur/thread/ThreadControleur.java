@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package op.controleur.thread;
 
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import op.controleur.SimulateurControleur;
 import op.modele.Chaine;
 import op.modele.Commande;
 import op.modele.CommandeLigne;
+import op.modele.CommandeProduite;
 import op.modele.Produit;
 
 /**
@@ -71,5 +72,13 @@ public class ThreadControleur extends Thread{
     {
         float progress = ((commande.getUnitesProduites() + commande.getUnitesAProduire()) * 100 / commande.getUnitesAProduire()) - 100;
         return progress;
+    }
+    
+    public ArrayList<CommandeProduite> getProduitsFabriqueParChaine(){
+        ArrayList<CommandeProduite> cp = new ArrayList();
+        for (ThreadChaine tc:Tchaines){
+            cp.add(new CommandeProduite(tc.getIdChaine(),tc.getProduitFab()));
+        }
+        return cp;
     }
 }

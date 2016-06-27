@@ -11,6 +11,7 @@ import javax.swing.JProgressBar;
 import op.controleur.SimulateurControleur;
 import op.modele.Chaine;
 import op.modele.CommandeLigne;
+import op.modele.CommandeProduite;
 import op.vue.panel.PanelChaineSimulation;
 import op.vue.panel.PanelCommandeSimulation;
 
@@ -52,6 +53,7 @@ public class IHMSimulateur extends JFrame{
         pbarPanel = new JPanel();
         pbarLabel = new JLabel("Avancement total");
         pbar = new JProgressBar(0, 100);
+        pbar.setStringPainted(true);
         pbarPanel.add(pbarLabel);
         pbarPanel.add(pbar);
         
@@ -70,7 +72,7 @@ public class IHMSimulateur extends JFrame{
         
         this.panelCommande = new PanelCommandeSimulation(listeCommande);
         this.conteneur.add(this.panelCommande);
-        //this.conteneur.add(this.chainesPanel);
+        this.conteneur.add(this.chainesPanel);
         //ajout du conteneur
         add(this.conteneur);
         pack();
@@ -80,8 +82,9 @@ public class IHMSimulateur extends JFrame{
         startButton.setEnabled(statut);
     }
 
-    public void refreshIHM(ArrayList<CommandeLigne> liste, float progress) {
-        this.panelCommande.refreshCommandeAffiche(liste);
+    public void refreshIHM(ArrayList<CommandeLigne> liste, float progress, ArrayList<CommandeProduite> cp) {
+        
+        this.panelCommande.refreshCommandeAffiche(liste,cp);
         this.pbar.setValue((int)progress);
     }
 

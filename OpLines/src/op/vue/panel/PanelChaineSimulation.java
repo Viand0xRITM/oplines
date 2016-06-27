@@ -5,12 +5,12 @@
 */
 package op.vue.panel;
 
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextArea;
+import op.modele.Produit;
 
 /**
  *
@@ -18,35 +18,42 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelChaineSimulation extends JPanel {
     protected JLabel titre;
-    protected JTable table;
-    
-    protected DefaultTableModel defaultTableModel;
+    private JTextArea text;
     
     private int id;
     
     public PanelChaineSimulation(String nom) {
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.id = Integer.valueOf(nom);
         this.titre = new JLabel("Chaine " + nom);
-        this.table = new JTable(defaultTableModel);
-        this.defaultTableModel = new DefaultTableModel();
-        
-        this.table     = new JTable(this.defaultTableModel){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            };
-        };
-        this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.text = new JTextArea("\n\n\n");
         this.add(titre);
-        this.add(new JScrollPane(table));
+        this.add(text);
     }
-
+    
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
-    
+    public void refreshIHM(ArrayList<Produit> liste){
+        if (! liste.isEmpty()){
+            String display = "";
+            int qte = 0;
+            int id=liste.get(0).getId();
+            for (Produit prd: liste){
+                if (id == prd.getId()){
+                    qte++;
+                } else {
+                    display += "Produit "+id+": "+qte+"\n";
+                    id = prd.getId();
+                    qte=1;
+                }
+            }
+            display += "Produit "+id+": "+qte;
+            this.text.setText(display);
+        }
+    }
 }

@@ -83,7 +83,13 @@ public class IHMSimulateur extends JFrame{
     }
 
     public void refreshIHM(ArrayList<CommandeLigne> liste, float progress, ArrayList<CommandeProduite> cp) {
-        
+        for (PanelChaineSimulation pcs : listeChaines){
+            int i = 0;
+            while ( i < cp.size() && cp.get(i).getIdChaine()!= pcs.getId()){
+                i++;
+            }
+            pcs.refreshIHM(cp.get(i).getListeProduit());
+        }
         this.panelCommande.refreshCommandeAffiche(liste,cp);
         this.pbar.setValue((int)progress);
     }
